@@ -1,0 +1,2950 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../docker_compose_services_simple/">
+      
+      
+        <link rel="next" href="../docker_compose_services_aias/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+    
+    
+      
+        <title>IAM deployment - Deploy ARLAS Exploration stack</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/styles.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#services" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Deploy ARLAS Exploration stack" class="md-header__button md-logo" aria-label="Deploy ARLAS Exploration stack" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Deploy ARLAS Exploration stack
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              IAM deployment
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/gisaia/ARLAS-Exploration-stack" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Deploy ARLAS Exploration stack" class="md-nav__button md-logo" aria-label="Deploy ARLAS Exploration stack" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Deploy ARLAS Exploration stack
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/gisaia/ARLAS-Exploration-stack" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arlas_exploration_stack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Run ARLAS Stack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Configure ARLAS deployment
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Configure ARLAS deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configure ARLAS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Docker-compose services
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Docker-compose services
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker_compose_services_simple/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simple deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    IAM deployment
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    IAM deployment
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-elasticyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-elastic.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-elastic.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-elasticsearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service elasticsearch
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-arlas-serveryaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-arlas-server.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-arlas-server.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-arlas-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service arlas-server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-arlas-persistence-serveryaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-arlas-persistence-server.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-arlas-persistence-server.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-arlas-persistence-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service arlas-persistence-server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-arlas-permissions-serveryaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-arlas-permissions-server.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-arlas-permissions-server.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-arlas-permissions-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service arlas-permissions-server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-iam-serveryaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-iam-server.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-iam-server.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-arlas-iam-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service arlas-iam-server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-iam-wuiyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-iam-wui.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-iam-wui.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-arlas-wui-iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service arlas-wui-iam
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-arlas-builderyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-arlas-builder.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-arlas-builder.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-arlas-builder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service arlas-builder
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-arlas-hubyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-arlas-hub.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-arlas-hub.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-arlas-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service arlas-hub
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-arlas-wuiyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-arlas-wui.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-arlas-wui.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-arlas-wui" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service arlas-wui
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-protomapsyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-protomaps.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-protomaps.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-protomaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service protomaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-apisixyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-apisix.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-apisix.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-apisix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service apisix
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-postgresyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-postgres.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-postgres.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service db
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker_compose_services_aias/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AIAS deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-elasticyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-elastic.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-elastic.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-elasticsearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service elasticsearch
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-arlas-serveryaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-arlas-server.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-arlas-server.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-arlas-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service arlas-server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-arlas-persistence-serveryaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-arlas-persistence-server.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-arlas-persistence-server.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-arlas-persistence-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service arlas-persistence-server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-arlas-permissions-serveryaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-arlas-permissions-server.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-arlas-permissions-server.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-arlas-permissions-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service arlas-permissions-server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-iam-serveryaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-iam-server.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-iam-server.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-arlas-iam-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service arlas-iam-server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-iam-wuiyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-iam-wui.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-iam-wui.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-arlas-wui-iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service arlas-wui-iam
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-arlas-builderyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-arlas-builder.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-arlas-builder.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-arlas-builder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service arlas-builder
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-arlas-hubyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-arlas-hub.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-arlas-hub.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-arlas-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service arlas-hub
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-arlas-wuiyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-arlas-wui.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-arlas-wui.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-arlas-wui" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service arlas-wui
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-protomapsyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-protomaps.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-protomaps.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-protomaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service protomaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-apisixyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-apisix.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-apisix.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-apisix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service apisix
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-dcref-dc-postgresyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File dc/ref-dc-postgres.yaml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File dc/ref-dc-postgres.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service db
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>IAM deployment</h1>
+
+<h2 id="services">Services:</h2>
+<ul>
+<li><a href="#service-elasticsearch">elasticsearch</a></li>
+<li><a href="#service-arlas-server">arlas-server</a></li>
+<li><a href="#service-arlas-persistence-server">arlas-persistence-server</a></li>
+<li><a href="#service-arlas-permissions-server">arlas-permissions-server</a></li>
+<li><a href="#service-arlas-iam-server">arlas-iam-server</a></li>
+<li><a href="#service-arlas-wui-iam">arlas-wui-iam</a></li>
+<li><a href="#service-arlas-builder">arlas-builder</a></li>
+<li><a href="#service-arlas-hub">arlas-hub</a></li>
+<li><a href="#service-arlas-wui">arlas-wui</a></li>
+<li><a href="#service-protomaps">protomaps</a></li>
+<li><a href="#service-apisix">apisix</a></li>
+<li><a href="#service-db">db</a></li>
+</ul>
+<h2 id="file-dcref-dc-elasticyaml">File dc/ref-dc-elastic.yaml</h2>
+<h3 id="service-elasticsearch">Service elasticsearch</h3>
+<p>Description: Elasticsearch is an indexing engine</p>
+<p>Image: <code>ELASTIC_VERSION</code> with <code>docker.elastic.co/elasticsearch/elasticsearch:8.9. ...</code> in <code>conf/versions.env</code></p>
+<table>
+<thead>
+<tr>
+<th>Container variable</th>
+<th>Value or environment variable</th>
+<th>Default</th>
+<th>Description</th>
+<th>Env file setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>discovery.type</code></td>
+<td><code>single-node</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>cluster.name</code></td>
+<td><code>arlas-es-cluster</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>node.name</code></td>
+<td><code>arlas-data-node-1</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ES_JAVA_OPTS</code></td>
+<td><code>ES_JAVA_OPTS</code></td>
+<td>``</td>
+<td></td>
+<td><code>-Xms1g -Xmx1g</code> in <code>conf/elastic.env</code></td>
+</tr>
+<tr>
+<td><code>xpack.security.enabled</code></td>
+<td><code>false</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>xpack.security.http.ssl.enabled</code></td>
+<td><code>false</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>xpack.security.transport.ssl.enabled</code></td>
+<td><code>false</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>tracing.apm.enabled</code></td>
+<td><code>false</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>List of volumes:</p>
+<ul>
+<li><code>${ELASTIC_STORAGE:-arlas-data-es}:/usr/share/elasticsearch/data</code></li>
+</ul>
+<h2 id="file-dcref-dc-arlas-serveryaml">File dc/ref-dc-arlas-server.yaml</h2>
+<h3 id="service-arlas-server">Service arlas-server</h3>
+<p>Description: ARLAS Server is the geo-analytic engine of the ARLAS Exploration Stack</p>
+<p>Image: <code>ARLAS_SERVER_VERSION</code> with <code>gisaia/arlas-server:26.0.6</code> in <code>conf/versions.env</code></p>
+<table>
+<thead>
+<tr>
+<th>Container variable</th>
+<th>Value or environment variable</th>
+<th>Default</th>
+<th>Description</th>
+<th>Env file setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ARLAS_AUTH_POLICY_CLASS</code></td>
+<td><code>ARLAS_AUTH_POLICY_CLASS</code></td>
+<td><code>io.arlas.filter.impl.NoPolicyEnforcer</code></td>
+<td>Specify a PolicyEnforcer class to load in order to activate Authentication if needed</td>
+<td><code>io.arlas.filter.impl.HTTPPolicyEnforcer</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_PUBLIC_URIS</code></td>
+<td><code>swagger.*:*,stac:GET,openapi.json:GET,stac/.*:GET/ ...</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_PERMISSION_URL</code></td>
+<td><code>ARLAS_AUTH_PERMISSION_URL</code></td>
+<td>``</td>
+<td></td>
+<td><code>http://arlas-iam-server:9998/arlas_iam_server/perm ...</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_APP_PATH</code></td>
+<td><code>/</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_BASE_URI</code></td>
+<td><code>ARLAS_BASE_URI</code></td>
+<td><code>http://arlas-server:9999/arlas/</code></td>
+<td>Arlas base uri</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_CACHE_TIMEOUT</code></td>
+<td><code>ARLAS_CACHE_TIMEOUT</code></td>
+<td><code>5</code></td>
+<td>TTL in seconds of items in the cache</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_CORS_ALLOWED_HEADERS</code></td>
+<td><code>"arlas-user,arlas-groups,arlas-organization,X-Requ ...</code></td>
+<td>``</td>
+<td>Comma-separated list of allowed headers</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_CORS_ENABLED</code></td>
+<td><code>ARLAS_CORS_ENABLED</code></td>
+<td><code>true</code></td>
+<td>Whether to configure cors or not</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_ELASTIC_CLUSTER</code></td>
+<td><code>ARLAS_ELASTIC_CLUSTER</code></td>
+<td><code>arlas-es-cluster</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_ELASTIC_ENABLE_SSL</code></td>
+<td><code>false</code></td>
+<td>``</td>
+<td>use SSL to connect to elasticsearch</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_ELASTIC_INDEX</code></td>
+<td><code>ARLAS_ELASTIC_INDEX</code></td>
+<td><code>.arlas</code></td>
+<td>name of the index that is used for storing ARLAS configuration</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_ELASTIC_NODES</code></td>
+<td><code>ARLAS_ELASTIC_NODES</code></td>
+<td><code>elasticsearch:9200</code></td>
+<td>comma separated list of elasticsearch nodes as host:port values</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_ELASTIC_SKIP_MASTER</code></td>
+<td><code>ARLAS_ELASTIC_SKIP_MASTER</code></td>
+<td><code>true</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_ELASTIC_SNIFFING</code></td>
+<td><code>ES_SNIFFING</code></td>
+<td><code>false</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_INSPIRE_ENABLED</code></td>
+<td><code>ARLAS_INSPIRE_ENABLED</code></td>
+<td><code>false</code></td>
+<td>Whether to activate INSPIRE compliant response elements</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_LOGGING_CONSOLE_LEVEL</code></td>
+<td><code>ARLAS_LOGGING_CONSOLE_LEVEL</code></td>
+<td>``</td>
+<td></td>
+<td><code>INFO</code> in <code>conf/arlas.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_LOGGING_LEVEL</code></td>
+<td><code>ARLAS_LOGGING_LEVEL</code></td>
+<td>``</td>
+<td></td>
+<td><code>INFO</code> in <code>conf/arlas.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_PREFIX</code></td>
+<td><code>/arlas</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_SERVICE_CSW_ENABLE</code></td>
+<td><code>ARLAS_SERVICE_CSW_ENABLE</code></td>
+<td><code>false</code></td>
+<td>Whether the CSW service is enabled or not</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_SERVICE_RASTER_TILES_ENABLE</code></td>
+<td><code>ARLAS_SERVICE_RASTER_TILES_ENABLE</code></td>
+<td><code>false</code></td>
+<td>Whether the RASTER tile service is enabled or not</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_SERVICE_WFS_ENABLE</code></td>
+<td><code>ARLAS_SERVICE_WFS_ENABLE</code></td>
+<td><code>false</code></td>
+<td>Whether the WFS service is enabled or not</td>
+<td></td>
+</tr>
+<tr>
+<td><code>JDK_JAVA_OPTIONS</code></td>
+<td><code>ARLAS_SERVER_JDK_JAVA_OPTIONS</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_KEYCLOAK_REALM</code></td>
+<td><code>ARLAS_AUTH_KEYCLOAK_REALM</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_KEYCLOAK_RESOURCE</code></td>
+<td><code>ARLAS_AUTH_KEYCLOAK_RESOURCE</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_KEYCLOAK_SECRET</code></td>
+<td><code>ARLAS_AUTH_KEYCLOAK_SECRET</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_KEYCLOAK_URL</code></td>
+<td><code>ARLAS_AUTH_KEYCLOAK_URL</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="file-dcref-dc-arlas-persistence-serveryaml">File dc/ref-dc-arlas-persistence-server.yaml</h2>
+<h3 id="service-arlas-persistence-server">Service arlas-persistence-server</h3>
+<p>Description: ARLAS Persistence is a service for storing and retrieving small ojects, such as JSON documents or image previews.</p>
+<p>Image: <code>ARLAS_PERSISTENCE_VERSION</code> with <code>gisaia/arlas-persistence-server:26.0.0</code> in <code>conf/versions.env</code></p>
+<table>
+<thead>
+<tr>
+<th>Container variable</th>
+<th>Value or environment variable</th>
+<th>Default</th>
+<th>Description</th>
+<th>Env file setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ARLAS_AUTH_POLICY_CLASS</code></td>
+<td><code>ARLAS_AUTH_POLICY_CLASS</code></td>
+<td><code>io.arlas.filter.impl.NoPolicyEnforcer</code></td>
+<td></td>
+<td><code>io.arlas.filter.impl.HTTPPolicyEnforcer</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_PUBLIC_URIS</code></td>
+<td><code>swagger.*:*,stac:GET,openapi.json:GET,stac/.*:GET/ ...</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_PERMISSION_URL</code></td>
+<td><code>ARLAS_AUTH_PERMISSION_URL</code></td>
+<td>``</td>
+<td></td>
+<td><code>http://arlas-iam-server:9998/arlas_iam_server/perm ...</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_ENABLED</code></td>
+<td><code>ARLAS_AUTH_ENABLED</code></td>
+<td><code>false</code></td>
+<td></td>
+<td><code>true</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_CACHE_TIMEOUT</code></td>
+<td><code>ARLAS_CACHE_TIMEOUT</code></td>
+<td><code>5</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERSISTENCE_APP_PATH</code></td>
+<td><code>ARLAS_PERSISTENCE_APP_PATH</code></td>
+<td><code>/</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERSISTENCE_ENGINE</code></td>
+<td><code>ARLAS_PERSISTENCE_ENGINE</code></td>
+<td><code>hibernate</code></td>
+<td></td>
+<td><code>file</code> in <code>conf/persistence-file.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERSISTENCE_HIBERNATE_PASSWORD</code></td>
+<td><code>POSTGRES_PASSWORD</code></td>
+<td>``</td>
+<td></td>
+<td><code>not_a_secret</code> in <code>conf/postgres.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERSISTENCE_HIBERNATE_URL</code></td>
+<td><code>ARLAS_PERSISTENCE_HIBERNATE_URL</code></td>
+<td><code>jdbc:postgresql://db:5432/arlas</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERSISTENCE_HIBERNATE_USER</code></td>
+<td><code>POSTGRES_USER</code></td>
+<td>``</td>
+<td></td>
+<td><code>pg-user</code> in <code>conf/postgres.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERSISTENCE_LOCAL_FOLDER</code></td>
+<td><code>/persist/</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERSISTENCE_LOGGING_CONSOLE_LEVEL</code></td>
+<td><code>ARLAS_PERSISTENCE_LOGGING_CONSOLE_LEVEL</code></td>
+<td>``</td>
+<td></td>
+<td><code>INFO</code> in <code>conf/persistence-file.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERSISTENCE_LOGGING_LEVEL</code></td>
+<td><code>ARLAS_PERSISTENCE_LOGGING_LEVEL</code></td>
+<td>``</td>
+<td></td>
+<td><code>INFO</code> in <code>conf/persistence-file.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERSISTENCE_PORT</code></td>
+<td><code>ARLAS_PERSISTENCE_PORT</code></td>
+<td><code>9997</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERSISTENCE_PREFIX</code></td>
+<td><code>ARLAS_PERSISTENCE_PREFIX</code></td>
+<td><code>/arlas-persistence-server</code></td>
+<td></td>
+<td><code>/persist</code> in <code>conf/persistence-file.env</code></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_APPLICATION_PACKAGES</code></td>
+<td><code>io.arlas</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_ENVIRONMENT</code></td>
+<td><code>ELASTIC_APM_ENVIRONMENT</code></td>
+<td>``</td>
+<td></td>
+<td><code>ARLAS</code> in <code>conf/elastic.env</code></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_LOG_ECS_FORMATTER_ALLOW_LIST</code></td>
+<td><code>ELASTIC_APM_LOG_ECS_FORMATTER_ALLOW_LIST</code></td>
+<td><code>*</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_LOG_ECS_REFORMATTING</code></td>
+<td><code>ELASTIC_APM_LOG_ECS_REFORMATTING</code></td>
+<td><code>OVERRIDE</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_SECRET_TOKEN</code></td>
+<td><code>ELASTIC_APM_SECRET_TOKEN</code></td>
+<td>``</td>
+<td></td>
+<td><code>not_a_secret</code> in <code>conf/elastic.env</code></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_SERVER_URLS</code></td>
+<td><code>ELASTIC_APM_SERVER_URLS</code></td>
+<td><code>http://apm-server:8200</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_SERVICE_NAME</code></td>
+<td><code>arlas-persistence-server</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_TRANSACTION_IGNORE_USER_AGENTS</code></td>
+<td><code>GoogleHC/*, kube-probe/*, curl*, GoogleStackdriver ...</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_USE_JAXRS_PATH_AS_TRANSACTION_NAME</code></td>
+<td><code>ELASTIC_APM_USE_JAXRS_PATH_AS_TRANSACTION_NAME</code></td>
+<td><code>true</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>JDK_JAVA_OPTIONS</code></td>
+<td><code>ARLAS_PERSISTENCE_JDK_JAVA_OPTIONS</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>List of volumes:</p>
+<ul>
+<li><code>${ARLAS_PERSISTENCE_STORAGE}:/persist/</code></li>
+</ul>
+<h2 id="file-dcref-dc-arlas-permissions-serveryaml">File dc/ref-dc-arlas-permissions-server.yaml</h2>
+<h3 id="service-arlas-permissions-server">Service arlas-permissions-server</h3>
+<p>Description: ARLAS Permissions is a service for listing user's permissions</p>
+<p>Image: <code>ARLAS_PERMISSIONS_VERSION</code> with <code>gisaia/arlas-permissions-server:26.0.0</code> in <code>conf/versions.env</code></p>
+<table>
+<thead>
+<tr>
+<th>Container variable</th>
+<th>Value or environment variable</th>
+<th>Default</th>
+<th>Description</th>
+<th>Env file setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ARLAS_AUTH_POLICY_CLASS</code></td>
+<td><code>ARLAS_AUTH_POLICY_CLASS</code></td>
+<td><code>io.arlas.filter.impl.NoPolicyEnforcer</code></td>
+<td></td>
+<td><code>io.arlas.filter.impl.HTTPPolicyEnforcer</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_PERMISSION_URL</code></td>
+<td><code>ARLAS_AUTH_PERMISSION_URL</code></td>
+<td>``</td>
+<td></td>
+<td><code>http://arlas-iam-server:9998/arlas_iam_server/perm ...</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_ENABLED</code></td>
+<td><code>ARLAS_AUTH_ENABLED</code></td>
+<td><code>false</code></td>
+<td></td>
+<td><code>true</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERMISSIONS_APP_PATH</code></td>
+<td><code>/</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERMISSIONS_PREFIX</code></td>
+<td><code>/arlas_permissions_server</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_CACHE_TIMEOUT</code></td>
+<td><code>ARLAS_CACHE_TIMEOUT</code></td>
+<td><code>5</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERMISSIONS_LOGGING_CONSOLE_LEVEL</code></td>
+<td><code>ARLAS_PERMISSIONS_LOGGING_CONSOLE_LEVEL</code></td>
+<td>``</td>
+<td></td>
+<td><code>INFO</code> in <code>conf/permissions.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERMISSIONS_LOGGING_LEVEL</code></td>
+<td><code>ARLAS_PERMISSIONS_LOGGING_LEVEL</code></td>
+<td>``</td>
+<td></td>
+<td><code>INFO</code> in <code>conf/permissions.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_PUBLIC_URIS</code></td>
+<td><code>swagger.*:*,stac:GET,openapi.json:GET,stac/.*:GET/ ...</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERMISSIONS_PORT</code></td>
+<td><code>ARLAS_PERMISSIONS_PORT</code></td>
+<td><code>9996</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_APPLICATION_PACKAGES</code></td>
+<td><code>io.arlas</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_ENVIRONMENT</code></td>
+<td><code>ELASTIC_APM_ENVIRONMENT</code></td>
+<td>``</td>
+<td></td>
+<td><code>ARLAS</code> in <code>conf/elastic.env</code></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_LOG_ECS_FORMATTER_ALLOW_LIST</code></td>
+<td><code>ELASTIC_APM_LOG_ECS_FORMATTER_ALLOW_LIST</code></td>
+<td><code>*</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_LOG_ECS_REFORMATTING</code></td>
+<td><code>ELASTIC_APM_LOG_ECS_REFORMATTING</code></td>
+<td><code>OVERRIDE</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_SECRET_TOKEN</code></td>
+<td><code>ELASTIC_APM_SECRET_TOKEN</code></td>
+<td>``</td>
+<td></td>
+<td><code>not_a_secret</code> in <code>conf/elastic.env</code></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_SERVER_URLS</code></td>
+<td><code>ELASTIC_APM_SERVER_URLS</code></td>
+<td><code>http://apm-server:8200</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_SERVICE_NAME</code></td>
+<td><code>arlas-permission-server</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_TRANSACTION_IGNORE_USER_AGENTS</code></td>
+<td><code>GoogleHC/*, kube-probe/*, curl*, GoogleStackdriver ...</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ELASTIC_APM_USE_JAXRS_PATH_AS_TRANSACTION_NAME</code></td>
+<td><code>ELASTIC_APM_USE_JAXRS_PATH_AS_TRANSACTION_NAME</code></td>
+<td><code>true</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>JDK_JAVA_OPTIONS</code></td>
+<td><code>ARLAS_PERMISSIONS_JDK_JAVA_OPTIONS</code></td>
+<td>``</td>
+<td></td>
+<td>empty value in <code>conf/permissions.env</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="file-dcref-dc-iam-serveryaml">File dc/ref-dc-iam-server.yaml</h2>
+<h3 id="service-arlas-iam-server">Service arlas-iam-server</h3>
+<p>Description: ARLAS IAM is the ARLAS Identity and Access Management service.</p>
+<p>Image: <code>ARLAS_IAM_SERVER_VERSION</code> with <code>gisaia/arlas-iam-server:26.0.2</code> in <code>conf/versions.env</code></p>
+<table>
+<thead>
+<tr>
+<th>Container variable</th>
+<th>Value or environment variable</th>
+<th>Default</th>
+<th>Description</th>
+<th>Env file setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ARLAS_ACCESS_TOKEN_TTL</code></td>
+<td><code>600000</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_ANONYMOUS_VALUE</code></td>
+<td><code>ARLAS_ANONYMOUS_VALUE</code></td>
+<td><code>anonymous</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_INIT_ADMIN</code></td>
+<td><code>ARLAS_AUTH_INIT_ADMIN</code></td>
+<td>``</td>
+<td></td>
+<td><code>tech@gisaia.com</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_INIT_PASSWORD</code></td>
+<td><code>ARLAS_AUTH_INIT_PASSWORD</code></td>
+<td>``</td>
+<td></td>
+<td><code>admin</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_CACHE_TIMEOUT</code></td>
+<td><code>ARLAS_CACHE_TIMEOUT</code></td>
+<td><code>5</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_IAM_CACHE_FACTORY_CLASS</code></td>
+<td><code>ARLAS_IAM_CACHE_FACTORY_CLASS</code></td>
+<td><code>io.arlas.commons.cache.NoCacheFactory</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_IAM_HIBERNATE_PASSWORD</code></td>
+<td><code>POSTGRES_PASSWORD</code></td>
+<td>``</td>
+<td></td>
+<td><code>not_a_secret</code> in <code>conf/postgres.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_IAM_HIBERNATE_URL</code></td>
+<td><code>ARLAS_IAM_HIBERNATE_URL</code></td>
+<td><code>jdbc:postgresql://db:5432/arlas</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_IAM_HIBERNATE_USER</code></td>
+<td><code>POSTGRES_USER</code></td>
+<td>``</td>
+<td></td>
+<td><code>pg-user</code> in <code>conf/postgres.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_IAM_LOGGING_CONSOLE_LEVEL</code></td>
+<td><code>ARLAS_IAM_LOGGING_CONSOLE_LEVEL</code></td>
+<td>``</td>
+<td></td>
+<td><code>INFO</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_IAM_LOGGING_LEVEL</code></td>
+<td><code>ARLAS_IAM_LOGGING_LEVEL</code></td>
+<td>``</td>
+<td></td>
+<td><code>INFO</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_IAM_PORT</code></td>
+<td><code>ARLAS_IAM_PORT</code></td>
+<td><code>9998</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_IAM_VERIFY_EMAIL</code></td>
+<td><code>ARLAS_IAM_VERIFY_EMAIL</code></td>
+<td>``</td>
+<td></td>
+<td><code>false</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_REFRESH_TOKEN_TTL</code></td>
+<td><code>600000</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_SERVER_URL</code></td>
+<td><code>"http://arlas-server:9999/arlas/"</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_SMTP_ACTIVATED</code></td>
+<td><code>ARLAS_SMTP_ACTIVATED</code></td>
+<td>``</td>
+<td></td>
+<td><code>false</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_SMTP_FROM</code></td>
+<td><code>ARLAS_SMTP_FROM</code></td>
+<td>``</td>
+<td></td>
+<td>empty value in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_SMTP_HOST</code></td>
+<td><code>ARLAS_SMTP_HOST</code></td>
+<td>``</td>
+<td></td>
+<td>empty value in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_SMTP_PASSWORD</code></td>
+<td><code>ARLAS_SMTP_PASSWORD</code></td>
+<td>``</td>
+<td></td>
+<td>empty value in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_SMTP_PORT</code></td>
+<td><code>ARLAS_SMTP_PORT</code></td>
+<td><code>25</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_SMTP_RESET_LINK</code></td>
+<td><code>ARLAS_HOST</code></td>
+<td>``</td>
+<td></td>
+<td><code>localhost</code> in <code>conf/stack.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_SMTP_USERNAME</code></td>
+<td><code>ARLAS_SMTP_USERNAME</code></td>
+<td>``</td>
+<td></td>
+<td>empty value in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_SMTP_VERIFY_LINK</code></td>
+<td><code>ARLAS_HOST</code></td>
+<td>``</td>
+<td></td>
+<td><code>localhost</code> in <code>conf/stack.env</code></td>
+</tr>
+<tr>
+<td><code>JDK_JAVA_OPTIONS</code></td>
+<td><code>ARLAS_IAM_JDK_JAVA_OPTIONS</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_KEYCLOAK_REALM</code></td>
+<td><code>ARLAS_AUTH_KEYCLOAK_REALM</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_KEYCLOAK_RESOURCE</code></td>
+<td><code>ARLAS_AUTH_KEYCLOAK_RESOURCE</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_KEYCLOAK_SECRET</code></td>
+<td><code>ARLAS_AUTH_KEYCLOAK_SECRET</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTH_KEYCLOAK_URL</code></td>
+<td><code>ARLAS_AUTH_KEYCLOAK_URL</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="file-dcref-dc-iam-wuiyaml">File dc/ref-dc-iam-wui.yaml</h2>
+<h3 id="service-arlas-wui-iam">Service arlas-wui-iam</h3>
+<p>Description: ARLAS IAM is the ARLAS Identity and Access Management web interface.</p>
+<p>Image: <code>ARLAS_WUI_IAM_VERSION</code> with <code>gisaia/arlas-wui-iam:26.1.0</code> in <code>conf/versions.env</code></p>
+<table>
+<thead>
+<tr>
+<th>Container variable</th>
+<th>Value or environment variable</th>
+<th>Default</th>
+<th>Description</th>
+<th>Env file setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ARLAS_AUTHENT_MODE</code></td>
+<td><code>ARLAS_AUTHENT_MODE</code></td>
+<td>``</td>
+<td></td>
+<td><code>iam</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_THRESHOLD</code></td>
+<td><code>ARLAS_AUTHENT_THRESHOLD</code></td>
+<td>``</td>
+<td></td>
+<td><code>60000</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_IAM_SERVER_URL</code></td>
+<td><code>/arlas_iam_server</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_TAB_NAME</code></td>
+<td><code>"ARLAS Wui IAM"</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_USE_AUTHENT</code></td>
+<td><code>ARLAS_USE_AUTHENT</code></td>
+<td>``</td>
+<td></td>
+<td><code>true</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_WUI_IAM_APP_PATH</code></td>
+<td><code>/iam</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_WUI_IAM_BASE_HREF</code></td>
+<td><code>/iam</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_STATIC_LINKS</code></td>
+<td><code>ARLAS_IAM_LINKS</code></td>
+<td>``</td>
+<td></td>
+<td><code>'</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="file-dcref-dc-arlas-builderyaml">File dc/ref-dc-arlas-builder.yaml</h2>
+<h3 id="service-arlas-builder">Service arlas-builder</h3>
+<p>Description: ARLAS Builder is the interface for elaborating ARLAS Dashboards.</p>
+<p>Image: <code>ARLAS_BUILDER_VERSION</code> with <code>gisaia/arlas-wui-builder:26.1.0</code> in <code>conf/versions.env</code></p>
+<table>
+<thead>
+<tr>
+<th>Container variable</th>
+<th>Value or environment variable</th>
+<th>Default</th>
+<th>Description</th>
+<th>Env file setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ARLAS_AUTHENT_CLEAR_HASH</code></td>
+<td><code>ARLAS_AUTHENT_CLEAR_HASH</code></td>
+<td><code>true</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_CLIENT_ID</code></td>
+<td><code>ARLAS_AUTHENT_CLIENT_ID</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_DISABLE_AT_HASH_CHECK</code></td>
+<td><code>ARLAS_AUTHENT_DISABLE_AT_HASH_CHECK</code></td>
+<td><code>true</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_ENABLE_SESSION_CHECKS</code></td>
+<td><code>ARLAS_AUTHENT_ENABLE_SESSION_CHECKS</code></td>
+<td><code>true</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_FORCE_CONNECT</code></td>
+<td><code>ARLAS_AUTHENT_FORCE_CONNECT</code></td>
+<td>``</td>
+<td></td>
+<td><code>false</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_ISSUER</code></td>
+<td><code>ARLAS_AUTHENT_ISSUER</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_LOGIN_URL</code></td>
+<td><code>ARLAS_AUTHENT_LOGIN_URL</code></td>
+<td>``</td>
+<td></td>
+<td><code>https://${ARLAS_HOST}/hub/login</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_LOGOUT_URL</code></td>
+<td><code>ARLAS_AUTHENT_LOGOUT_URL</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_MODE</code></td>
+<td><code>ARLAS_AUTHENT_MODE</code></td>
+<td>``</td>
+<td></td>
+<td><code>iam</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_POST_LOGOUT_REDIRECT_URI</code></td>
+<td><code>ARLAS_AUTHENT_POST_LOGOUT_REDIRECT_URI</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_REDIRECT_URI</code></td>
+<td><code>ARLAS_AUTHENT_REDIRECT_URI</code></td>
+<td><code>/wui/callback</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_REQUIRE_HTTPS</code></td>
+<td><code>ARLAS_AUTHENT_REQUIRE_HTTPS</code></td>
+<td><code>false</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_RESPONSE_TYPE</code></td>
+<td><code>ARLAS_AUTHENT_RESPONSE_TYPE</code></td>
+<td><code>code</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_SCOPE</code></td>
+<td><code>ARLAS_AUTHENT_SCOPE</code></td>
+<td><code>profile</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_SHOW_DEBUG</code></td>
+<td><code>ARLAS_AUTHENT_SHOW_DEBUG</code></td>
+<td><code>false</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_SILENT_REFRESH_REDIRECT_URI</code></td>
+<td><code>ARLAS_AUTHENT_SILENT_REFRESH_REDIRECT_URI</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_SILENT_REFRESH_TIMEOUT</code></td>
+<td><code>ARLAS_AUTHENT_SILENT_REFRESH_TIMEOUT</code></td>
+<td><code>10000</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_STORAGE</code></td>
+<td><code>ARLAS_AUTHENT_STORAGE</code></td>
+<td><code>memorystorage</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_THRESHOLD</code></td>
+<td><code>ARLAS_AUTHENT_THRESHOLD</code></td>
+<td>``</td>
+<td></td>
+<td><code>60000</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_TIMEOUT_FACTOR</code></td>
+<td><code>ARLAS_AUTHENT_TIMEOUT_FACTOR</code></td>
+<td><code>0.75</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_USE_DISCOVERY</code></td>
+<td><code>ARLAS_AUTHENT_USE_DISCOVERY</code></td>
+<td>``</td>
+<td></td>
+<td><code>true</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_BASEMAPS</code></td>
+<td><code>ARLAS_BASEMAPS</code></td>
+<td><code>[{"name":"Empty","url":"/styles/empty/style.json","image":null}]</code></td>
+<td></td>
+<td><code>'[</code> in <code>conf/arlas.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_BASEMAPS</code></td>
+<td><code>[{"name":"Streets-light","url":"https://api.maptil ...</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_BUILDER_BASE_HREF</code></td>
+<td><code>ARLAS_BUILDER_BASE_HREF</code></td>
+<td><code>/builder</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_EXTERNAL_NODE_PAGE</code></td>
+<td><code>ARLAS_EXTERNAL_NODE_PAGE</code></td>
+<td><code>true</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_IAM_SERVER_URL</code></td>
+<td><code>ARLAS_IAM_SERVER_URL</code></td>
+<td><code>/arlas_iam_server</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERMISSIONS_URL</code></td>
+<td><code>ARLAS_PERMISSIONS_URL</code></td>
+<td><code>/arlas_permissions_server</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERSISTENCE_URL</code></td>
+<td><code>ARLAS_PERSISTENCE_URL</code></td>
+<td><code>/arlas_persistence_server</code></td>
+<td></td>
+<td><code>/persist</code> in <code>conf/persistence-file.env</code><br><code>https://${ARLAS_HOST}/persist</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_SERVER_URL</code></td>
+<td><code>ARLAS_SERVER_URL</code></td>
+<td><code>/arlas</code></td>
+<td></td>
+<td><code>https://${ARLAS_HOST}/arlas</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_USE_AUTHENT</code></td>
+<td><code>ARLAS_USE_AUTHENT</code></td>
+<td>``</td>
+<td></td>
+<td><code>true</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_WUI_URL</code></td>
+<td><code>ARLAS_WUI_URL</code></td>
+<td><code>/wui/</code></td>
+<td></td>
+<td><code>https://${ARLAS_HOST}/wui/</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_STATIC_LINKS</code></td>
+<td><code>ARLAS_BUILDER_LINKS</code></td>
+<td>``</td>
+<td></td>
+<td><code>'</code> in <code>conf/arlas.env</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="file-dcref-dc-arlas-hubyaml">File dc/ref-dc-arlas-hub.yaml</h2>
+<h3 id="service-arlas-hub">Service arlas-hub</h3>
+<p>Description: ARLAS Hub is the interface for discovering all the available ARLAS Dashboards</p>
+<p>Image: <code>ARLAS_HUB_VERSION</code> with <code>gisaia/arlas-wui-hub:26.1.0</code> in <code>conf/versions.env</code></p>
+<table>
+<thead>
+<tr>
+<th>Container variable</th>
+<th>Value or environment variable</th>
+<th>Default</th>
+<th>Description</th>
+<th>Env file setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ARLAS_AUTHENT_CLEAR_HASH</code></td>
+<td><code>ARLAS_AUTHENT_CLEAR_HASH</code></td>
+<td><code>true</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_CLIENT_ID</code></td>
+<td><code>ARLAS_AUTHENT_CLIENT_ID</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_DISABLE_AT_HASH_CHECK</code></td>
+<td><code>ARLAS_AUTHENT_DISABLE_AT_HASH_CHECK</code></td>
+<td><code>true</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_ENABLE_SESSION_CHECKS</code></td>
+<td><code>ARLAS_AUTHENT_ENABLE_SESSION_CHECKS</code></td>
+<td><code>true</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_FORCE_CONNECT</code></td>
+<td><code>ARLAS_AUTHENT_FORCE_CONNECT</code></td>
+<td>``</td>
+<td></td>
+<td><code>false</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_ISSUER</code></td>
+<td><code>ARLAS_AUTHENT_ISSUER</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_LOGOUT_URL</code></td>
+<td><code>ARLAS_AUTHENT_LOGOUT_URL</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_MODE</code></td>
+<td><code>ARLAS_AUTHENT_MODE</code></td>
+<td>``</td>
+<td></td>
+<td><code>iam</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_REDIRECT_URI</code></td>
+<td><code>ARLAS_AUTHENT_REDIRECT_URI</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_REQUIRE_HTTPS</code></td>
+<td><code>ARLAS_AUTHENT_REQUIRE_HTTPS</code></td>
+<td><code>false</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_RESPONSE_TYPE</code></td>
+<td><code>ARLAS_AUTHENT_RESPONSE_TYPE</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_SCOPE</code></td>
+<td><code>ARLAS_AUTHENT_SCOPE</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_SHOW_DEBUG</code></td>
+<td><code>ARLAS_AUTHENT_SHOW_DEBUG</code></td>
+<td><code>false</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_SILENT_REFRESH_REDIRECT_URI</code></td>
+<td><code>ARLAS_AUTHENT_SILENT_REFRESH_REDIRECT_URI</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_SILENT_REFRESH_TIMEOUT</code></td>
+<td><code>ARLAS_AUTHENT_SILENT_REFRESH_TIMEOUT</code></td>
+<td><code>10000</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_STORAGE</code></td>
+<td><code>ARLAS_AUTHENT_STORAGE</code></td>
+<td><code>memorystorage</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_THRESHOLD</code></td>
+<td><code>ARLAS_AUTHENT_THRESHOLD</code></td>
+<td>``</td>
+<td></td>
+<td><code>60000</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_TIMEOUT_FACTOR</code></td>
+<td><code>ARLAS_AUTHENT_TIMEOUT_FACTOR</code></td>
+<td><code>0.75</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_USE_DISCOVERY</code></td>
+<td><code>ARLAS_AUTHENT_USE_DISCOVERY</code></td>
+<td>``</td>
+<td></td>
+<td><code>true</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_BUILDER_URL</code></td>
+<td><code>ARLAS_BUILDER_URL</code></td>
+<td><code>/builder/</code></td>
+<td></td>
+<td><code>https://${ARLAS_HOST}/builder/</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_HUB_BASE_HREF</code></td>
+<td><code>ARLAS_HUB_BASE_HREF</code></td>
+<td><code>/hub</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_IAM_SERVER_URL</code></td>
+<td><code>ARLAS_IAM_SERVER_URL</code></td>
+<td><code>/arlas_iam_server</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERMISSIONS_URL</code></td>
+<td><code>ARLAS_PERMISSIONS_URL</code></td>
+<td><code>/arlas_permissions_server</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERSISTENCE_URL</code></td>
+<td><code>ARLAS_PERSISTENCE_URL</code></td>
+<td><code>/persist</code></td>
+<td></td>
+<td><code>/persist</code> in <code>conf/persistence-file.env</code><br><code>https://${ARLAS_HOST}/persist</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_USE_AUTHENT</code></td>
+<td><code>ARLAS_USE_AUTHENT</code></td>
+<td>``</td>
+<td></td>
+<td><code>true</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_WUI_URL</code></td>
+<td><code>ARLAS_WUI_URL</code></td>
+<td><code>/wui/</code></td>
+<td></td>
+<td><code>https://${ARLAS_HOST}/wui/</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_STATIC_LINKS</code></td>
+<td><code>ARLAS_HUB_LINKS</code></td>
+<td>``</td>
+<td></td>
+<td><code>'</code> in <code>conf/arlas.env</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="file-dcref-dc-arlas-wuiyaml">File dc/ref-dc-arlas-wui.yaml</h2>
+<h3 id="service-arlas-wui">Service arlas-wui</h3>
+<p>Description: ARLAS WUI is ARLAS Web interface for visualising an analytic ARLAS Dashboard.</p>
+<p>Image: <code>ARLAS_WUI_VERSION</code> with <code>gisaia/arlas-wui:26.1.0-no-analytics</code> in <code>conf/versions.env</code></p>
+<table>
+<thead>
+<tr>
+<th>Container variable</th>
+<th>Value or environment variable</th>
+<th>Default</th>
+<th>Description</th>
+<th>Env file setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ARLAS_AUTHENT_CLEAR_HASH</code></td>
+<td><code>ARLAS_AUTHENT_CLEAR_HASH</code></td>
+<td><code>true</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_CLIENT_ID</code></td>
+<td><code>ARLAS_AUTHENT_CLIENT_ID</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_DISABLE_AT_HASH_CHECK</code></td>
+<td><code>ARLAS_AUTHENT_DISABLE_AT_HASH_CHECK</code></td>
+<td><code>true</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_ENABLE_SESSION_CHECKS</code></td>
+<td><code>ARLAS_AUTHENT_ENABLE_SESSION_CHECKS</code></td>
+<td><code>true</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_FORCE_CONNECT</code></td>
+<td><code>ARLAS_AUTHENT_FORCE_CONNECT</code></td>
+<td>``</td>
+<td></td>
+<td><code>false</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_ISSUER</code></td>
+<td><code>ARLAS_AUTHENT_ISSUER</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_LOGIN_URL</code></td>
+<td><code>ARLAS_AUTHENT_LOGIN_URL</code></td>
+<td>``</td>
+<td></td>
+<td><code>https://${ARLAS_HOST}/hub/login</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_LOGOUT_URL</code></td>
+<td><code>ARLAS_AUTHENT_LOGOUT_URL</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_MODE</code></td>
+<td><code>ARLAS_AUTHENT_MODE</code></td>
+<td>``</td>
+<td></td>
+<td><code>iam</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_POST_LOGOUT_REDIRECT_URI</code></td>
+<td><code>ARLAS_AUTHENT_POST_LOGOUT_REDIRECT_URI</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_REDIRECT_URI</code></td>
+<td><code>ARLAS_AUTHENT_REDIRECT_URI</code></td>
+<td><code>/wui/callback</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_REQUIRE_HTTPS</code></td>
+<td><code>ARLAS_AUTHENT_REQUIRE_HTTPS</code></td>
+<td><code>false</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_RESPONSE_TYPE</code></td>
+<td><code>ARLAS_AUTHENT_RESPONSE_TYPE</code></td>
+<td><code>code</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_SCOPE</code></td>
+<td><code>ARLAS_AUTHENT_SCOPE</code></td>
+<td><code>profile</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_SHOW_DEBUG</code></td>
+<td><code>ARLAS_AUTHENT_SHOW_DEBUG</code></td>
+<td><code>false</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_SILENT_REFRESH_REDIRECT_URI</code></td>
+<td><code>ARLAS_AUTHENT_SILENT_REFRESH_REDIRECT_URI</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_SILENT_REFRESH_TIMEOUT</code></td>
+<td><code>ARLAS_AUTHENT_SILENT_REFRESH_TIMEOUT</code></td>
+<td><code>10000</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_STORAGE</code></td>
+<td><code>ARLAS_AUTHENT_STORAGE</code></td>
+<td><code>memorystorage</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_THRESHOLD</code></td>
+<td><code>ARLAS_AUTHENT_THRESHOLD</code></td>
+<td>``</td>
+<td></td>
+<td><code>60000</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_TIMEOUT_FACTOR</code></td>
+<td><code>ARLAS_AUTHENT_TIMEOUT_FACTOR</code></td>
+<td><code>0.75</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_AUTHENT_USE_DISCOVERY</code></td>
+<td><code>ARLAS_AUTHENT_USE_DISCOVERY</code></td>
+<td>``</td>
+<td></td>
+<td><code>true</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_GEOCODING_FIND_PLACE_URL</code></td>
+<td><code>ARLAS_GEOCODING_FIND_PLACE_URL</code></td>
+<td>``</td>
+<td></td>
+<td>empty value in <code>conf/arlas.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_GEOCODING_FIND_PLACE_ZOOM_TO</code></td>
+<td><code>ARLAS_GEOCODING_FIND_PLACE_ZOOM_TO</code></td>
+<td><code>10</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_HUB_URL</code></td>
+<td><code>ARLAS_HUB_URL</code></td>
+<td><code>/hub/</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_IAM_SERVER_URL</code></td>
+<td><code>ARLAS_IAM_SERVER_URL</code></td>
+<td><code>/arlas_iam_server</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_PERSISTENCE_URL</code></td>
+<td><code>ARLAS_PERSISTENCE_URL</code></td>
+<td><code>/arlas_persistence_server</code></td>
+<td></td>
+<td><code>/persist</code> in <code>conf/persistence-file.env</code><br><code>https://${ARLAS_HOST}/persist</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_USE_AUTHENT</code></td>
+<td><code>ARLAS_USE_AUTHENT</code></td>
+<td>``</td>
+<td></td>
+<td><code>true</code> in <code>conf/arlas_iam.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_WUI_BASE_HREF</code></td>
+<td><code>ARLAS_WUI_BASE_HREF</code></td>
+<td><code>/wui</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PUBLIC_HOST</code></td>
+<td><code>ARLAS_HOST</code></td>
+<td>``</td>
+<td></td>
+<td><code>localhost</code> in <code>conf/stack.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_STATIC_LINKS</code></td>
+<td><code>ARLAS_WUI_LINKS</code></td>
+<td>``</td>
+<td></td>
+<td><code>'</code> in <code>conf/arlas.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_DOWNLOAD_PROCESS_URL</code></td>
+<td><code>ARLAS_DOWNLOAD_PROCESS_URL</code></td>
+<td>``</td>
+<td></td>
+<td><code>/aproc/processes/download/execution</code> in <code>conf/arlas.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_DOWNLOAD_PROCESS_CHECK_URL</code></td>
+<td><code>ARLAS_DOWNLOAD_PROCESS_CHECK_URL</code></td>
+<td>``</td>
+<td></td>
+<td><code>/aproc/processes/download</code> in <code>conf/arlas.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_DOWNLOAD_PROCESS_MAX_ITEMS</code></td>
+<td><code>ARLAS_DOWNLOAD_PROCESS_MAX_ITEMS</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_DOWNLOAD_PROCESS_SETTINGS_URL</code></td>
+<td><code>ARLAS_DOWNLOAD_PROCESS_SETTINGS_URL</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_DOWNLOAD_PROCESS_STATUS_URL</code></td>
+<td><code>ARLAS_DOWNLOAD_PROCESS_STATUS_URL</code></td>
+<td>``</td>
+<td></td>
+<td><code>/aproc/jobs</code> in <code>conf/arlas.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_ENRICH_PROCESS_URL</code></td>
+<td><code>ARLAS_ENRICH_PROCESS_URL</code></td>
+<td>``</td>
+<td></td>
+<td><code>/aproc/processes/enrich/execution</code> in <code>conf/arlas.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_ENRICH_PROCESS_CHECK_URL</code></td>
+<td><code>ARLAS_ENRICH_PROCESS_CHECK_URL</code></td>
+<td>``</td>
+<td></td>
+<td><code>/aproc/processes/enrich</code> in <code>conf/arlas.env</code></td>
+</tr>
+<tr>
+<td><code>ARLAS_ENRICH_PROCESS_MAX_ITEMS</code></td>
+<td><code>ARLAS_ENRICH_PROCESS_MAX_ITEMS</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_ENRICH_PROCESS_SETTINGS_URL</code></td>
+<td><code>ARLAS_ENRICH_PROCESS_SETTINGS_URL</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ARLAS_ENRICH_PROCESS_STATUS_URL</code></td>
+<td><code>ARLAS_ENRICH_PROCESS_STATUS_URL</code></td>
+<td>``</td>
+<td></td>
+<td><code>/aproc/jobs</code> in <code>conf/arlas.env</code></td>
+</tr>
+</tbody>
+</table>
+<p>List of volumes:</p>
+<ul>
+<li><code>${PWD}/conf/protomaps/styles:/usr/share/nginx/html/assets/basemap/styles</code></li>
+<li><code>${PWD}/conf/protomaps/glyphs:/usr/share/nginx/html/assets/basemap/glyphs</code></li>
+<li><code>${PWD}/conf/protomaps/quicklook:/usr/share/nginx/html/assets/basemap/quicklook</code></li>
+<li><code>${PWD}/conf/protomaps/world.pmtiles:/usr/share/nginx/html/assets/basemap/world.pmtiles</code></li>
+</ul>
+<h2 id="file-dcref-dc-protomapsyaml">File dc/ref-dc-protomaps.yaml</h2>
+<h3 id="service-protomaps">Service protomaps</h3>
+<p>Image: <code>PROTOMAP_VERSION</code> with <code>protomaps/go-pmtiles:v1.19.0</code> in <code>conf/versions.env</code></p>
+<p>List of volumes:</p>
+<ul>
+<li><code>${PWD}/conf/protomaps/world.pmtiles:/protomaps/basemaps/world.pmtiles:ro</code></li>
+</ul>
+<h2 id="file-dcref-dc-apisixyaml">File dc/ref-dc-apisix.yaml</h2>
+<h3 id="service-apisix">Service apisix</h3>
+<p>Description: APISIX is ARLAS Stack gateway. It handles all the incoming trafic.</p>
+<p>Image: <code>APISIX_VERSION</code> with <code>apache/apisix:3.9.1-debian</code> in <code>conf/versions.env</code></p>
+<table>
+<thead>
+<tr>
+<th>Container variable</th>
+<th>Value or environment variable</th>
+<th>Default</th>
+<th>Description</th>
+<th>Env file setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>APISIX_STAND_ALONE</code></td>
+<td><code>APISIX_STAND_ALONE</code></td>
+<td><code>true</code></td>
+<td></td>
+<td><code>true</code> in <code>conf/apisix.env</code></td>
+</tr>
+</tbody>
+</table>
+<p>List of volumes:</p>
+<ul>
+<li><code>${APISIX_CONF_FILE}:/usr/local/apisix/conf/apisix.yaml:ro</code></li>
+</ul>
+<h2 id="file-dcref-dc-postgresyaml">File dc/ref-dc-postgres.yaml</h2>
+<h3 id="service-db">Service db</h3>
+<p>Image: <code>POSTGRES_VERSION</code> with <code>postgres:16.1</code> in <code>conf/versions.env</code></p>
+<table>
+<thead>
+<tr>
+<th>Container variable</th>
+<th>Value or environment variable</th>
+<th>Default</th>
+<th>Description</th>
+<th>Env file setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DAY_OF_WEEK_TO_KEEP</code></td>
+<td><code>POSTGRES_DAY_OF_WEEK_TO_KEEP</code></td>
+<td>``</td>
+<td></td>
+<td><code>6</code> in <code>conf/postgres.env</code></td>
+</tr>
+<tr>
+<td><code>DAYS_TO_KEEP</code></td>
+<td><code>POSTGRES_DAYS_TO_KEEP</code></td>
+<td>``</td>
+<td></td>
+<td><code>7</code> in <code>conf/postgres.env</code></td>
+</tr>
+<tr>
+<td><code>WEEKS_TO_KEEP</code></td>
+<td><code>POSTGRES_WEEKS_TO_KEEP</code></td>
+<td>``</td>
+<td></td>
+<td><code>5</code> in <code>conf/postgres.env</code></td>
+</tr>
+<tr>
+<td><code>PG_BACKUP_DIR</code></td>
+<td><code>/backup/</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PGPASSWORD</code></td>
+<td><code>POSTGRES_PASSWORD</code></td>
+<td>``</td>
+<td></td>
+<td><code>not_a_secret</code> in <code>conf/postgres.env</code></td>
+</tr>
+<tr>
+<td><code>PGUSER</code></td>
+<td><code>POSTGRES_USER</code></td>
+<td>``</td>
+<td></td>
+<td><code>pg-user</code> in <code>conf/postgres.env</code></td>
+</tr>
+<tr>
+<td><code>POSTGRES_DB</code></td>
+<td><code>arlas</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POSTGRES_HOST_AUTH_METHOD</code></td>
+<td><code>trust</code></td>
+<td>``</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POSTGRES_PASSWORD</code></td>
+<td><code>POSTGRES_PASSWORD</code></td>
+<td>``</td>
+<td></td>
+<td><code>not_a_secret</code> in <code>conf/postgres.env</code></td>
+</tr>
+<tr>
+<td><code>POSTGRES_USER</code></td>
+<td><code>POSTGRES_USER</code></td>
+<td>``</td>
+<td></td>
+<td><code>pg-user</code> in <code>conf/postgres.env</code></td>
+</tr>
+</tbody>
+</table>
+<p>List of volumes:</p>
+<ul>
+<li><code>${POSTGRES_BACKUP_STORAGE}:/backup/</code></li>
+<li><code>${POSTGRES_CREATE_TABLE}:/docker-entrypoint-initdb.d/createTable.sql:ro</code></li>
+<li><code>${POSTGRES_CRON}:/usr/local/bin/arlas/pg_backup_rotated.sh:ro</code></li>
+<li><code>${POSTGRES_STORAGE}:/var/lib/postgresql/data</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
